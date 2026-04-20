@@ -135,3 +135,38 @@ show(p)
 
 Now our axes have more informative titles! We may also want to alter the appearance of our plot, and this can be done largely using themes. For example, adding ` + theme_bw()` to our plot variable will give us a cleaner looking black and white theme without the gray grid in the background. Many different types of themes are available through ggplot, and here again we recommend exploring these on your own in the [ggplot documentation](https://ggplot2-book.org/themes).
 
+# How to Make a Pie Chart in ggplot
+
+1. Load the ggplot2 package:
+
+```r
+library(ggplot2)
+```
+
+2. Make a small dataset with categories and values:
+
+```r
+data <- data.frame(
+  category = c("A", "B", "C", "D"),
+  value = c(10, 20, 30, 40)
+)
+```
+
+3. Create the pie chart:
+
+```r
+ggplot(data, aes(x = "", y = value, fill = category)) +
+  geom_bar(stat = "identity", width = 1) +
+  coord_polar("y", start = 0) +
+  theme_void()
+```
+
+Explanation:
+
+* `ggplot(data, ...)` uses your dataset
+* `fill = category` gives each slice a different color
+* `y = value` controls the slice sizes
+* `geom_bar(stat = "identity")` uses the actual values
+* `coord_polar("y")` turns the bar chart into a pie chart
+* `theme_void()` removes axes and grid lines
+
